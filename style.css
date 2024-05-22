@@ -8,6 +8,7 @@
 
 body{
     font-family: 'Inter', sans-serif;
+    background-color: hsl(0, 0%, 100%);
 }
 
 .container{
@@ -44,27 +45,88 @@ body{
     font-weight: 400;
     margin-top: 10px;
 }
-.dark-mode{
-    justify-content: right;
+
+/* theme switch */
+
+.switch-mode{
     display: flex;
     align-items: center;
 }
-
-.dark-mode span{
-    font-size: 20px;
-    font-weight: 400;
+.mode{
+    margin-right: 5px;
+}
+.switch{
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 1.6rem;
+    justify-content: center;
 }
 
-.dark-mode label {
-    margin-right: 10px;
+.switch input {
+    display: none;
 }
-
-input[type="checkbox"] {
+ 
+.slider{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: hsl(230, 22%, 74%);
+    transition: .4s;
+    border-radius: 1rem;
     cursor: pointer;
+} 
+
+.slider:before{
+    content: "";
+    position: absolute;
+    height: 1.1rem;
+    width: 1.1rem;
+    left: 1.6rem;
+    bottom: .23rem;
+    background: #fff;
+    transition: .4s;
+    border-radius: 50%;
+    transition: transform .35s ease-in-out;
+    cursor: pointer;
+} 
+
+input:checked ~ .slider{
+    background-image: linear-gradient(90deg, hsl(210, 78%, 56%) ,hsl(146, 68%, 55%));
 }
 
-input[type="checkbox"]:checked +.slider {
-    background-color: #2196F3;
+input:checked ~ .slider:before{
+    transition: transform .35s ease-in-out;
+    transform: translateX(-1.2rem);
+    background: hsl(232, 19%, 15%);
+}
+/* end */
+body.dark-mode {
+    background-color: hsl(230, 17%, 14%);
+    color: hsl(0, 0%, 100%);
+}
+
+body.dark-mode .stat-card, body.dark-mode .overview-card {
+    background-color: hsl(228, 28%, 20%);
+    color: hsl(228, 34%, 66%);
+}
+body.dark-mode .stat-card h1{
+    color:hsl(0, 0%, 100%);
+}
+
+body.dark-mode .title p, body.dark-mode .mode{
+    color: hsl(228, 34%, 66%);
+}
+
+body.dark-mode .change.positive {
+    color: #66ff66;
+
+}
+
+body.dark-mode .change.negative {
+    color: #ff6666;
 }
 
 .intro{
@@ -130,15 +192,29 @@ h1{
 .stat-card h2, .overview-card h2 {
     margin: 10px 0;
 }
+.change{
+    display: flex;
+    flex-direction: row;
+}
+.change img {
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
+    align-self: center;
+}
 
 .change.positive {
     color: green;
-    align-content: center;
+    /* align-content: center; */
+    align-self: center;
+    
+
 }
 
 .change.negative {
     color: red;
-    align-content: center;
+    align-self: center;
+    
 }
 
 .followers{
@@ -199,7 +275,10 @@ h1{
     .title h2{
         font-size: 25px;
     }
-    .dark-mode{
+    body.dark-mode .title{
+        border-bottom: 1px solid hsl(0, 0%, 100%);
+    }
+    .switch-mode{
         width: 90%;
         flex-direction: row;
         justify-content: space-between;
