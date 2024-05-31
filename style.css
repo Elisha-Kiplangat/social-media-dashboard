@@ -54,6 +54,7 @@ body{
 }
 .mode{
     margin-right: 5px;
+    font-family: 'Inter', sans-serif ;
 }
 .switch{
     position: relative;
